@@ -1,0 +1,11 @@
+{
+  "name": "weather-data-generator",
+  "version": "1.0.0",
+  "description": "This Node application generates weather data periodically.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "avishka samod",
+  "license": "ISC"
+}
