@@ -30,16 +30,6 @@ const districts = [
   "Vavuniya",
 ];
 
-const utcTime = new Date(); // Get current UTC time
-
-// Calculate time difference in milliseconds (SLST is UTC+05:30)
-const timeDifference = 5.5 * 60 * 60 * 1000;
-
-// Convert to Sri Lankan time
-const sriLankanTime = new Date(utcTime.getTime() + timeDifference);
-
-console.log("sriLankanTime ---------->", sriLankanTime);
-
 function generateRandomWeatherData(location) {
   return {
     temperature: Math.floor(Math.random() * (35 - 25) + 25),
@@ -50,6 +40,10 @@ function generateRandomWeatherData(location) {
 
 async function saveWeatherData() {
   for (const district of districts) {
+    const utcTime = new Date(); // Get current UTC time within the loop
+    const timeDifference = 5.5 * 60 * 60 * 1000;
+    const sriLankanTime = new Date(utcTime.getTime() + timeDifference);
+
     const weatherData = generateRandomWeatherData(district);
 
     console.log("weatherData ---------->", weatherData);
