@@ -6,7 +6,7 @@ const logSchema = new Schema({
   timestamp: { type: Date, required: true },
   event: { type: String, required: true },
   data: {
-    location: { type: String },
+    district: { type: String },
     temperature: { type: Number },
     humidity: { type: Number },
     air_pressure: { type: Number },
