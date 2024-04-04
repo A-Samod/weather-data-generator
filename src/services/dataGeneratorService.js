@@ -32,7 +32,7 @@ const districts = [
 
 function generateRandomWeatherData(district) {
   return {
-    temperature: Math.floor(Math.random() * (35 - 25) + 25),
+    temperature: Math.floor(Math.random() * (35 - 20) + 20),
     humidity: Math.floor(Math.random() * (85 - 65) + 65),
     air_pressure: Math.floor(Math.random() * (1020 - 1000) + 1000),
   };
