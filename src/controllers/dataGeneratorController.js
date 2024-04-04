@@ -1,4 +1,4 @@
-const { saveWeatherData } = require("../services/dataGeneratorService");
+const  {saveWeatherData}  = require("../services/dataGEneratorService");
 
 async function generateData() {
   try {

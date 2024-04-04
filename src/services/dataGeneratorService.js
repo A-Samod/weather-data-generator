@@ -30,7 +30,7 @@ const districts = [
   "Vavuniya",
 ];
 
-function generateRandomWeatherData(location) {
+function generateRandomWeatherData(district) {
   return {
     temperature: Math.floor(Math.random() * (35 - 25) + 25),
     humidity: Math.floor(Math.random() * (85 - 65) + 65),
@@ -50,8 +50,14 @@ async function saveWeatherData() {
 
     // Update or create WeatherData record
     const updateResult = await WeatherData.findOneAndUpdate(
-      { location: district },
-      { weather: weatherData, updatedAt: sriLankanTime },
+      { district: district },
+      //  { weather: weatherData, updatedAt: sriLankanTime },
+      {
+        temperature: weatherData.temperature,
+        humidity: weatherData.humidity,
+        air_pressure: weatherData.air_pressure,
+        updatedAt: sriLankanTime,
+      },
       { upsert: true, new: true }
     );
 
@@ -62,7 +68,7 @@ async function saveWeatherData() {
     console.log("savedWeatherData ---------->", savedWeatherData);
 
     const weatherLogData = {
-      location: district,
+      district: district,
       ...savedWeatherData.weather,
     };
 
