@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 const task = cron.schedule(
-  "*/1 * * * *",
+  "*/4 * * * *",
   () => {
     console.log("Running data generation task...");
     //data generation function
