@@ -30,17 +30,7 @@ const districts = [
   "Vavuniya",
 ];
 
-const utcTime = new Date(); // Get current UTC time
-
-// Calculate time difference in milliseconds (SLST is UTC+05:30)
-const timeDifference = 5.5 * 60 * 60 * 1000;
-
-// Convert to Sri Lankan time
-const sriLankanTime = new Date(utcTime.getTime() + timeDifference);
-
-console.log("sriLankanTime ---------->", sriLankanTime);
-
-function generateRandomWeatherData(location) {
+function generateRandomWeatherData(district) {
   return {
     temperature: Math.floor(Math.random() * (35 - 25) + 25),
     humidity: Math.floor(Math.random() * (85 - 65) + 65),
@@ -50,14 +40,24 @@ function generateRandomWeatherData(location) {
 
 async function saveWeatherData() {
   for (const district of districts) {
+    const utcTime = new Date(); // Get current UTC time within the loop
+    const timeDifference = 5.5 * 60 * 60 * 1000;
+    const sriLankanTime = new Date(utcTime.getTime() + timeDifference);
+
     const weatherData = generateRandomWeatherData(district);
 
     console.log("weatherData ---------->", weatherData);
 
     // Update or create WeatherData record
     const updateResult = await WeatherData.findOneAndUpdate(
-      { location: district },
-      { weather: weatherData, updatedAt: sriLankanTime },
+      { district: district },
+      //  { weather: weatherData, updatedAt: sriLankanTime },
+      {
+        temperature: weatherData.temperature,
+        humidity: weatherData.humidity,
+        air_pressure: weatherData.air_pressure,
+        updatedAt: sriLankanTime,
+      },
       { upsert: true, new: true }
     );
 
@@ -68,7 +68,7 @@ async function saveWeatherData() {
     console.log("savedWeatherData ---------->", savedWeatherData);
 
     const weatherLogData = {
-      location: district,
+      district: district,
       ...savedWeatherData.weather,
     };
 

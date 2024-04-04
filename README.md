@@ -1,3 +1,5 @@
+# Student ID : COBSCCOMP4Y222P-011
+
 # Weather Data Generator
 
 This project is a weather data generator designed to produce synthetic weather data at regular intervals. It utilizes Node.js along with MongoDB for data storage. The generator is scheduled using cron jobs to run periodically, allowing for the continuous generation of weather data.
